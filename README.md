@@ -38,6 +38,7 @@ https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
 将上面获得的几个值填入代码这几行
 ![image](https://github.com/tech-shrimp/FreeWechatPush/assets/154193368/fe5a78ad-b4eb-45f8-a271-eda55f33a617)
 ### 配置定时任务
+
 修改这几行
 ![image](https://github.com/tech-shrimp/FreeWechatPush/assets/154193368/58b7c58c-ac22-4a1a-b3e8-2eacc01b7329)
 
