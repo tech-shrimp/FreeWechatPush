@@ -1,3 +1,6 @@
+# 免费微信推送
+原理：申请免费的测试版公众号，可获得免费的模板推送功能。
+
 ### 视频教程
 
 https://www.bilibili.com/video/BV1Ng4y1r7EP/
