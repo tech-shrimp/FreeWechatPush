@@ -24,6 +24,7 @@ https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
 
 模板标题随便填，模板内容如下，可以根据需求自己定制
 
+模板一 天气预报：
 ```copy
 今天：{{date.DATA}} 
 地区：{{region.DATA}} 
@@ -33,9 +34,11 @@ https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
 对你说的话：{{today_note.DATA}}
 ```
 
+模板二 课程提醒：
 ```copy
 消息：{{message.DATA}}	
 ```
+
 ### 配置代码
 
 将上面获得的几个值填入代码这几行
