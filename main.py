@@ -72,10 +72,9 @@ def get_weather(my_city):
 
 def get_access_token():
     # 获取access token的url
-    url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}' \
-        .format(appID.strip(), appSecret.strip())
+    url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(appID.strip(), appSecret.strip())
     response = requests.get(url).json()
-    print(response)
+    print("gettokenRep:", response)
     access_token = response.get('access_token')
     return access_token
 
@@ -126,14 +125,15 @@ def send_weather(access_token, weather):
         }
     }
     url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}'.format(access_token)
-    print(requests.post(url, json.dumps(body)).text)
+    print("sendweather:"+requests.post(url, json.dumps(body)).text)
 
 
 def send_Message(access_token, message):
     body = {
         "touser": openId,
         "template_id": message_template_id.strip(),
-        "url": "https://weixin.qq.com",
+        "url": "http://weixin.qq.com/download",
+        "topcolor": "#FF0000",
         "data": {
             "message": {
                 "value": message
@@ -141,7 +141,7 @@ def send_Message(access_token, message):
         }
     }
     url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}'.format(access_token)
-    print(requests.post(url, json.dumps(body)).text)
+    print("sendmessage:"+requests.post(url, json.dumps(body)).text)
 
 
 def weather_report(city):
@@ -165,10 +165,3 @@ if __name__ == '__main__':
     weather_report(city)
     Message(get_daily_love())
 
-    # timetable("第二教学楼十分钟后开始英语课")
-
-    # schedule.every().day.at("18:30").do(weather_report, "南京")
-    # schedule.every().monday.at("13:50").do(timetable, "第二教学楼十分钟后开始英语课")
-    #while True:
-    #    schedule.run_pending()
-    #    time.sleep(1)
