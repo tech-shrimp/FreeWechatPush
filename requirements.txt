@@ -2,4 +2,4 @@ requests
 schedule
 bs4
 html5lib
-os
+
