@@ -26,3 +26,10 @@ jobs:
     - name: 运行main
       run: |
         python main.py
+      env:
+        APPID: ${{ secrets.APPID }}
+        APP_SECRET: ${{ secrets.APP_SECRET }}
+        OPENID: ${{ secrets.OPENID }}
+        WEATHER_TEMID: ${{ secrets.WEATHER_TEMID }}
+        MESSAGE_TEMID: ${{ secrets.MESSAGE_TEMID }}
+        CITY: ${{ secrets.CITY }}
