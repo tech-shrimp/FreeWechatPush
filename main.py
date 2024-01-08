@@ -1,5 +1,5 @@
 # 安装依赖 pip3 install requests html5lib bs4 schedule
-
+import os
 import time
 import requests
 import json
@@ -8,14 +8,20 @@ from bs4 import BeautifulSoup
 
 
 # 从测试号信息获取
-appID = ""
-appSecret = ""
+appID = os.environ.get("APPID")
+appSecret = os.environ.get("APP_SECRET")
 #收信人ID即 用户列表中的微信号，见上文
-openId = ""
+openId = os.environ.get("OPENID")
 # 天气预报模板ID
-weather_template_id = ""
+weather_template_id = os.environ.get("WEATHER_TEMID")
 # 时间表模板ID
-timetable_template_id = ""
+# timetable_template_id = ""
+
+# message sender Template ID
+message_template_id = os.environ.get("MESSAGE_TEMID")
+# city
+city = os.environ.get("CITY")
+
 
 
 def get_weather(my_city):
@@ -123,10 +129,10 @@ def send_weather(access_token, weather):
     print(requests.post(url, json.dumps(body)).text)
 
 
-def send_timetable(access_token, message):
+def send_Message(access_token, message):
     body = {
         "touser": openId,
-        "template_id": timetable_template_id.strip(),
+        "template_id": message_template_id.strip(),
         "url": "https://weixin.qq.com",
         "data": {
             "message": {
@@ -148,15 +154,17 @@ def weather_report(city):
     send_weather(access_token, weather)
 
 
-def timetable(message):
+def Message(message):
     # 1.获取access_token
     access_token = get_access_token()
     # 3. 发送消息
-    send_timetable(access_token, message)
+    send_Message(access_token, message)
 
 
 if __name__ == '__main__':
-    weather_report("青岛")
+    weather_report(city)
+    Message(get_daily_love())
+
     # timetable("第二教学楼十分钟后开始英语课")
 
     # schedule.every().day.at("18:30").do(weather_report, "南京")
