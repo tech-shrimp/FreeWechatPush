@@ -73,7 +73,7 @@ def get_weather(my_city):
 def get_access_token():
     print(type(appID)," ",type(appSecret))
     # 获取access token的url
-    url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(str(appID).strip(), str(appSecret).strip())
+    url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(appID.strip(), appSecret.strip())
     response = requests.get(url).json()
     print("gettokenRep:", response)
     access_token = response.get('access_token')
