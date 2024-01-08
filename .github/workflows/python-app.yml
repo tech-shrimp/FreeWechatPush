@@ -1,0 +1,35 @@
+name: 天气预报推送及情话推送
+
+on: 
+  schedule:
+  - cron : "00 23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: 运行main
+      run: |
+        python main.py
+      env:
+        APPID: ${{ secrets.APPID }}
+        APP_SECRET: ${{ secrets.APP_SECRET }}
+        OPENID: ${{ secrets.OPENID }}
+        WEATHER_TEMID: ${{ secrets.WEATHER_TEMID }}
+        MESSAGE_TEMID: ${{ secrets.MESSAGE_TEMID }}
+        CITY: ${{ secrets.CITY }}
